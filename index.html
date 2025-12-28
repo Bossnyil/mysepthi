@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Septhi Cantik</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@700&display=swap');
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+    font-family: "Ubuntu Mono", monospace;
+}
+
+.btn-animate {
+    transition: transform 0.2s;
+}
+.btn-animate:hover {
+    transform: scale(1.1);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <img src="https://feeldreams.github.io/bunga.gif" class="mb-4" width="200">
+    <p style="font-size:30px">Septhi, mau gak jadi pacar aku?</p>
+
+    <div class="mt-4">
+        <button class="btn btn-success btn-animate mr-3" onclick="startLove()">
+            <i class="fas fa-heart"></i> Mau 💖
+        </button>
+        <button class="btn btn-danger btn-animate" onclick="nope()">
+            <i class="fas fa-times"></i> Gamau 😭
+        </button>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+function nope() {
+    Swal.fire({
+        icon: 'error',
+        text: 'Yakin? Aku sedih 😢'
+    });
+}
+
+function startLove(step = 0) {
+    const images = [
+        'https://feeldreams.github.io/peach22.gif',
+        'https://feeldreams.github.io/peachgetar.gif',
+        'https://feeldreams.github.io/peachktw.gif'
+    ];
+
+    const texts = [
+        'Aku serius lho 😳',
+        'Hari ini resmi jadian ❤️',
+        'Kapan kita jalan bareng?'
+    ];
+
+    if (step < texts.length) {
+        Swal.fire({
+            text: texts[step],
+            imageUrl: images[step],
+            imageWidth: 150,
+            confirmButtonText: 'Lanjut'
+        }).then(() => startLove(step + 1));
+    } else {
+        Swal.fire({
+            title: 'Kirim pesan ke aku 💌',
+            input: 'text',
+            inputPlaceholder: 'Tulis pesan manis...',
+            confirmButtonText: 'Kirim'
+        }).then(res => {
+            if (res.isConfirmed) {
+                window.open(
+                    `https://wa.me/6289627112222?text=${encodeURIComponent(res.value)}`,
+                    '_blank'
+                );
+            }
+        });
+    }
+}
+</script>
+
+</body>
+</html>
